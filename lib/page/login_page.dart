@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
@@ -28,7 +29,9 @@ class LoginPage extends StatelessWidget {
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(4),
-                onTap: () {},
+                onTap: () {
+                  context.push('/home');
+                },
                 child: Center(
                   child: Text(
                     'Login',
