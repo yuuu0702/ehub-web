@@ -1,4 +1,5 @@
 import 'package:ehub_web/router.dart';
+import 'package:ehub_web/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,10 +17,8 @@ class MyApp extends StatelessWidget {
       routeInformationParser: goRouter.routeInformationParser,
       routeInformationProvider: goRouter.routeInformationProvider,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: const ColorScheme.dark(background: Color(0xFF15212B)),
-        useMaterial3: true,
-      ),
+      theme: theme,
+      darkTheme: theme,
     );
   }
 }
