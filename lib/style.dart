@@ -2,7 +2,7 @@ import 'package:ehub_web/color.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyStyle {
+abstract class MyStyle {
   static const _enFont = GoogleFonts.sarpanch;
   static const _jpFont = GoogleFonts.mPlus1p;
 
