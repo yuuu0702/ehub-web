@@ -53,7 +53,7 @@ abstract class MyStyle {
   // コンポーネント系
   static final button = _enFont(
     color: MyColor.foreground,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
     letterSpacing: 1.1,
   );
