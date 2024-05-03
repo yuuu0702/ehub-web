@@ -1,1 +1,1 @@
-{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"ehub-3795b","configurations":{"web":"1:859794933904:web:019605c6f7f746d4ceb015"}}}}}}
+{"firestore":{"rules":"firestore.rules","indexes":"firestore.indexes.json"},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"ehub-web","configurations":{"web":"1:609242052711:web:c84bb1f88ce0d4f5e9bcc2"}}}}}}

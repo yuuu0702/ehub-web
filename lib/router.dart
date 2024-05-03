@@ -1,6 +1,7 @@
 import 'package:ehub_web/page/first_page.dart';
 import 'package:ehub_web/page/home_page.dart';
 import 'package:ehub_web/page/login_page.dart';
+import 'package:ehub_web/page/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,6 +27,16 @@ final goRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const LoginPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/signup',
+      name: 'signup',
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const SignUpPage(),
         );
       },
     ),
