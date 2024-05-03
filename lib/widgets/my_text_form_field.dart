@@ -2,9 +2,10 @@ import 'package:ehub_web/style.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
-  const MyTextFormField({super.key, this.labelText});
+  const MyTextFormField({super.key, this.labelText, required this.onChanged});
 
   final String? labelText;
+  final Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +16,15 @@ class MyTextFormField extends StatelessWidget {
         // 何も表示しない
         const SizedBox(height: 4),
         TextFormField(
-          decoration: const InputDecoration(
-            border: OutlineInputBorder(
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(
               borderSide: BorderSide.none,
               borderRadius: BorderRadius.all(Radius.circular(8)),
             ),
-            fillColor: Color(0xFF2C3740),
+            fillColor: const Color(0xFF2C3740),
             filled: true,
           ),
+          onChanged: onChanged,
         ),
       ],
     );
