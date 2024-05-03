@@ -32,7 +32,9 @@ class FirstPage extends StatelessWidget {
             MyTextButton(
               text: 'SingUp',
               width: 160,
-              onTap: () {},
+              onTap: () {
+                context.push('/signup');
+              },
             ),
           ],
         ),

@@ -37,6 +37,7 @@ class LoginPage extends StatelessWidget {
                 password = value;
               },
             ),
+            const SizedBox(height: 24),
             MyFilledButton(
               text: 'Login',
               width: 160,
