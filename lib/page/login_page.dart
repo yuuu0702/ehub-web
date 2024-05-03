@@ -1,6 +1,7 @@
+import 'package:ehub_web/widgets/my_filled_button.dart';
+import 'package:ehub_web/widgets/my_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -16,52 +17,23 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              height: 129,
+              height: 130,
               child: Image.asset('assets/images/ehub_logo.png'),
             ),
             const SizedBox(height: 36),
-            Ink(
+            MyFilledButton(
+              text: 'Login',
               width: 160,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4),
-                color: Colors.white,
-              ),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(4),
-                onTap: () {
-                  context.push('/home');
-                },
-                child: Center(
-                  child: Text(
-                    'Login',
-                    style: GoogleFonts.sarpanch(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
+              onTap: () {
+                context.push('/home');
+              },
             ),
             const SizedBox(height: 24),
-            Ink(
+            MyTextButton(
+              text: 'SingUp',
               width: 160,
-              height: 40,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(4),
-                onTap: () {},
-                child: Center(
-                  child: Text(
-                    'SignUp',
-                    style: GoogleFonts.sarpanch(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-            )
+              onTap: () {},
+            ),
           ],
         ),
       ),
