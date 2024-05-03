@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 
 final goRouter = GoRouter(
   // アプリが起動した時
-  initialLocation: '/',
+  initialLocation: '/home',
   // パスと画面の組み合わせ
   routes: [
     GoRoute(
@@ -47,7 +47,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: HomePage(),
+          child: const HomePage(),
         );
       },
     ),
