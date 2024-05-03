@@ -1,10 +1,9 @@
 import 'package:ehub_web/widgets/my_filled_button.dart';
-import 'package:ehub_web/widgets/my_text_button.dart';
+import 'package:ehub_web/widgets/my_text_form_field.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
-class FirstPage extends StatelessWidget {
-  const FirstPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +20,11 @@ class FirstPage extends StatelessWidget {
               child: Image.asset('assets/images/ehub_logo.png'),
             ),
             const SizedBox(height: 36),
+            const MyTextFormField(labelText: 'E-mail'),
+            const SizedBox(height: 36),
+            const MyTextFormField(labelText: 'Password'),
             MyFilledButton(
               text: 'Login',
-              width: 160,
-              onTap: () {
-                context.push('/login');
-              },
-            ),
-            const SizedBox(height: 24),
-            MyTextButton(
-              text: 'SingUp',
               width: 160,
               onTap: () {},
             ),
