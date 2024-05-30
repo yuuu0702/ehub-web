@@ -3,6 +3,7 @@ import 'package:ehub_web/style.dart';
 import 'package:ehub_web/widgets/home_page/avatars.dart';
 import 'package:ehub_web/widgets/home_page/schedule_date.dart';
 import 'package:ehub_web/widgets/my_text_button.dart';
+import 'package:ehub_web/widgets/my_title.dart';
 import 'package:flutter/material.dart';
 
 class JoinedEventArea extends StatelessWidget {
@@ -18,13 +19,7 @@ class JoinedEventArea extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Text(
-              'Joined Event',
-              style: MyStyle.title,
-            ),
-          ),
+          const MyTitle(text: 'Joined Events'),
           Ink(
             width: double.infinity,
             decoration: const BoxDecoration(
