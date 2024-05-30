@@ -40,9 +40,12 @@ class MyButtonBase extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
         onTap: onTap,
         child: Center(
-          child: Text(
-            text,
-            style: MyStyle.button.copyWith(color: foregroundColor),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
+              text,
+              style: MyStyle.button.copyWith(color: foregroundColor),
+            ),
           ),
         ),
       ),

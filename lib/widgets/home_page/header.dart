@@ -1,4 +1,5 @@
 import 'package:ehub_web/style.dart';
+import 'package:ehub_web/widgets/home_page/my_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,22 +36,9 @@ class Header extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: 32.0,
-                      height: 32.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border.all(
-                          color: Colors.white,
-                          width: 2.0,
-                        ),
-                      ),
-                      child: const CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(
+                    const MyAvatar(
+                      imageUrl:
                           'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg',
-                        ),
-                      ),
                     ),
                     const SizedBox(width: 8),
                     Column(
