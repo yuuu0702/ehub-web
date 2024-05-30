@@ -1,3 +1,4 @@
+import 'package:ehub_web/page/create_profile_page.dart';
 import 'package:ehub_web/page/first_page.dart';
 import 'package:ehub_web/page/home_page.dart';
 import 'package:ehub_web/page/login_page.dart';
@@ -7,7 +8,7 @@ import 'package:go_router/go_router.dart';
 
 final goRouter = GoRouter(
   // アプリが起動した時
-  initialLocation: '/',
+  initialLocation: '/create-profile',
   // パスと画面の組み合わせ
   routes: [
     GoRoute(
@@ -37,6 +38,16 @@ final goRouter = GoRouter(
         return MaterialPage(
           key: state.pageKey,
           child: const SignUpPage(),
+        );
+      },
+    ),
+    GoRoute(
+      path: '/create-profile',
+      name: 'create-profile',
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const CreateProfilePage(),
         );
       },
     ),
