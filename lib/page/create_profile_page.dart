@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
@@ -100,6 +101,11 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   FontAwesomeIcons.playstation,
                   size: 48,
                 ),
+                SvgPicture.asset(
+                  'svgs/nintendo_switch_icon_136357.svg',
+                  height: 48,
+                  width: 48,
+                )
               ],
             ),
             SizedBox(
