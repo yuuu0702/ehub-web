@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 class CreateProfilePage extends StatefulWidget {
@@ -43,17 +44,24 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: _userImage == null
-                      ? NetworkImage(
-                          'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg',
-                        )
-                      : MemoryImage(_userImage),
-                ),
-                ElevatedButton(
-                  onPressed: pickImage,
-                  child: const Text('画像を選択'),
+                Column(
+                  children: [
+                    _userImage == null
+                        ? const CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage(
+                              'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg',
+                            ),
+                          )
+                        : CircleAvatar(
+                            radius: 50,
+                            backgroundImage: MemoryImage(_userImage!),
+                          ),
+                    ElevatedButton(
+                      onPressed: pickImage,
+                      child: const Text('画像を選択'),
+                    ),
+                  ],
                 ),
                 const SizedBox(width: 36),
                 Column(
@@ -82,6 +90,18 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
               ],
             ),
             const SizedBox(height: 36),
+            Row(
+              children: [
+                FaIcon(
+                  FontAwesomeIcons.computer,
+                  size: 48,
+                ),
+                FaIcon(
+                  FontAwesomeIcons.playstation,
+                  size: 48,
+                ),
+              ],
+            ),
             SizedBox(
               width: 320,
               child: MyTextFormField(
