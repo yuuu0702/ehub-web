@@ -24,8 +24,9 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    var email = '';
-    var password = '';
+    var userName = '';
+    var department = '';
+    var introduction = '';
 
     Future<void> pickImage() async {
       _userImage = await ImagePickerWeb.getImageAsBytes();
@@ -81,7 +82,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                           MyTextFormField(
                             labelText: 'Name',
                             onChanged: (String value) {
-                              email = value;
+                              userName = value;
                             },
                           ),
                           const SizedBox(height: 36),
@@ -90,7 +91,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                             child: MyTextFormField(
                               labelText: '所属部署',
                               onChanged: (String value) {
-                                email = value;
+                                department = value;
                               },
                             ),
                           ),
@@ -179,7 +180,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                     maxLines: 3,
                     labelText: '紹介文',
                     onChanged: (String value) {
-                      password = value;
+                      introduction = value;
                     },
                   ),
                 ),
