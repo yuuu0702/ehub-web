@@ -2,9 +2,11 @@ import 'package:ehub_web/style.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
-  const MyTextFormField({super.key, this.labelText, required this.onChanged});
+  const MyTextFormField(
+      {super.key, this.labelText, required this.onChanged, this.maxLines = 1});
 
   final String? labelText;
+  final int maxLines;
   final Function(String) onChanged;
 
   @override
@@ -16,6 +18,7 @@ class MyTextFormField extends StatelessWidget {
         // 何も表示しない
         const SizedBox(height: 4),
         TextFormField(
+          maxLines: maxLines,
           decoration: InputDecoration(
             border: const OutlineInputBorder(
               borderSide: BorderSide.none,
