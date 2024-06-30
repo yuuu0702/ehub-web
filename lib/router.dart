@@ -47,7 +47,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const CreateProfilePage(),
+          child: CreateProfilePage(state.extra as String),
         );
       },
     ),

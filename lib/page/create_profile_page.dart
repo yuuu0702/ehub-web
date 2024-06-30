@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ehub_web/style.dart';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
@@ -9,7 +10,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 class CreateProfilePage extends StatefulWidget {
-  const CreateProfilePage({super.key});
+  CreateProfilePage(this.uid, {super.key});
+
+  String uid = '';
 
   @override
   State<CreateProfilePage> createState() => _CreateProfilePageState();
@@ -188,7 +191,24 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                 MyFilledButton(
                   text: 'Login',
                   width: 160,
-                  onTap: () {},
+                  onTap: () {
+                    // ユーザー情報をFirestoreに保存
+                    FirebaseFirestore.instance
+                        .collection('users')
+                        .doc(widget.uid)
+                        .set({
+                      'name': userName,
+                      'department': department,
+                      'introduction': introduction,
+                      'platform_pc': platformPc,
+                      'platform_playstation': platformPlayStation,
+                      'platform_switch': platformSwitch,
+                      'platform_mobile': platformMobile,
+                    });
+
+                    // homeに遷移
+                    Navigator.of(context).pushNamed('/home');
+                  },
                 ),
               ],
             ),
