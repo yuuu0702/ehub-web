@@ -4,9 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ehub_web/style.dart';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
 class CreateProfilePage extends StatefulWidget {
@@ -25,12 +27,31 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
   var platformSwitch = false;
   var platformMobile = false;
 
+  var userName = '';
+  var department = '';
+  var introduction = '';
+
+  Future<void> uploadImageToFirebaseStorage(
+      Uint8List imageData, String uid) async {
+    try {
+      // Create a unique file name for the upload
+      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+      // Create a reference to the file location
+      Reference ref =
+          FirebaseStorage.instance.ref().child('users/$uid/photos/$fileName');
+
+      // Upload the file to Firebase Storage
+      await ref.putData(imageData);
+
+      print('Image uploaded successfully');
+    } catch (e) {
+      print('Failed to upload image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    var userName = '';
-    var department = '';
-    var introduction = '';
-
     Future<void> pickImage() async {
       _userImage = await ImagePickerWeb.getImageAsBytes();
       if (_userImage != null) {
@@ -86,6 +107,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                             labelText: 'Name',
                             onChanged: (String value) {
                               userName = value;
+                              print('userName: $userName');
                             },
                           ),
                           const SizedBox(height: 36),
@@ -192,6 +214,11 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   text: 'Login',
                   width: 160,
                   onTap: () {
+                    print(userName);
+
+                    // 画像をFirebase Storageに保存
+                    uploadImageToFirebaseStorage(_userImage!, widget.uid);
+
                     // ユーザー情報をFirestoreに保存
                     FirebaseFirestore.instance
                         .collection('users')
@@ -207,7 +234,7 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                     });
 
                     // homeに遷移
-                    Navigator.of(context).pushNamed('/home');
+                    context.go('/home');
                   },
                 ),
               ],

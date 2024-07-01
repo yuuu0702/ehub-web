@@ -1,6 +1,8 @@
 import 'package:ehub_web/style.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ehub_web/widgets/home_page/my_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Header extends StatelessWidget {
@@ -72,6 +74,22 @@ class Header extends StatelessWidget {
                       fontWeight: FontWeight.bold),
                 )
               ],
+            ),
+            // ログアウトボタン
+            TextButton(
+              onPressed: () {
+                // ログアウト処理
+                FirebaseAuth.instance.signOut();
+                // first_pageへ遷移
+                context.go('/');
+              },
+              child: Text(
+                'ログアウト',
+                style: GoogleFonts.sarpanch(
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ],
         ),

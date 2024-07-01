@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,13 +13,26 @@ class FirstPage extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
+        var userdata = FirebaseFirestore.instance
+            .collection('users')
+            .doc(snapshot.data?.uid);
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const CircularProgressIndicator();
         }
 
         // ログイン済みの場合はホームページへ遷移
         if (snapshot.hasData) {
-          context.go('/home');
+          // uidと一致しているデータがあるか確認
+          userdata.get().then((doc) {
+            if (doc.exists) {
+              print('ユーザーデータが存在します');
+              context.go('/home');
+            } else {
+              print('ユーザーデータが存在しません');
+              context.go('/create-profile', extra: snapshot.data!.uid);
+            }
+          });
         }
 
         return Scaffold(

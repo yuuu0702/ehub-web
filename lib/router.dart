@@ -8,7 +8,7 @@ import 'package:go_router/go_router.dart';
 
 final goRouter = GoRouter(
   // アプリが起動した時
-  initialLocation: '/create-profile',
+  initialLocation: '/',
   // パスと画面の組み合わせ
   routes: [
     GoRoute(
