@@ -27,7 +27,7 @@ class FirstPage extends StatelessWidget {
           userdata.get().then((doc) {
             if (doc.exists) {
               print('ユーザーデータが存在します');
-              context.go('/home');
+              context.go('/home', extra: snapshot.data!.uid);
             } else {
               print('ユーザーデータが存在しません');
               context.go('/create-profile', extra: snapshot.data!.uid);

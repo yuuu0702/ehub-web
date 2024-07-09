@@ -1,14 +1,21 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ehub_web/style.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ehub_web/widgets/home_page/my_avatar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Header extends StatelessWidget {
-  const Header({
+  Header({
     super.key,
+    required uid,
   });
+
+  final data = FirebaseFirestore.instance
+      .collection('users')
+      .doc(FirebaseAuth.instance.currentUser!.uid)
+      .get();
 
   @override
   Widget build(BuildContext context) {

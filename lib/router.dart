@@ -47,7 +47,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: CreateProfilePage(state.extra as String),
+          child: const CreateProfilePage(),
         );
       },
     ),
@@ -58,7 +58,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const HomePage(),
+          child: HomePage(state.extra as String),
         );
       },
     ),

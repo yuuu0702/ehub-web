@@ -5,7 +5,9 @@ import 'package:ehub_web/widgets/home_page/joined_event_area.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage(this.uid, {super.key});
+
+  final String uid;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class HomePage extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
-              const Header(),
+              Header(uid: uid),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),

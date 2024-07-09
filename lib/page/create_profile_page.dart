@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ehub_web/provider/userdata_provider.dart';
 import 'package:ehub_web/style.dart';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
@@ -9,18 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker_web/image_picker_web.dart';
 
-class CreateProfilePage extends StatefulWidget {
-  CreateProfilePage(this.uid, {super.key});
-
-  String uid = '';
+class CreateProfilePage extends ConsumerStatefulWidget {
+  const CreateProfilePage({super.key});
 
   @override
-  State<CreateProfilePage> createState() => _CreateProfilePageState();
+  ConsumerState<CreateProfilePage> createState() => _CreateProfilePageState();
 }
 
-class _CreateProfilePageState extends State<CreateProfilePage> {
+class _CreateProfilePageState extends ConsumerState<CreateProfilePage> {
   Uint8List? _userImage;
   var platformPc = false;
   var platformPlayStation = false;
@@ -214,16 +213,13 @@ class _CreateProfilePageState extends State<CreateProfilePage> {
                   text: 'Login',
                   width: 160,
                   onTap: () {
-                    print(userName);
+                    final uid = ref.read(UserData.uid);
 
                     // 画像をFirebase Storageに保存
-                    uploadImageToFirebaseStorage(_userImage!, widget.uid);
+                    uploadImageToFirebaseStorage(_userImage!, uid);
 
                     // ユーザー情報をFirestoreに保存
-                    FirebaseFirestore.instance
-                        .collection('users')
-                        .doc(widget.uid)
-                        .set({
+                    UserData.setProfile(uid, {
                       'name': userName,
                       'department': department,
                       'introduction': introduction,
