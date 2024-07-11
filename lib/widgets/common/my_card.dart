@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class MyCard extends StatelessWidget {
   const MyCard({
     super.key,
-    required this.child,
+    required this.content,
+    this.actions,
   });
 
-  final Widget child;
+  final Widget content;
+  final Widget? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,25 @@ class MyCard extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(16),
-        child: child,
+        child: Column(
+          children: [
+            content,
+            if (actions != null) _createActions(actions!),
+          ],
+        ),
       ),
+    );
+  }
+
+  Column _createActions(Widget actions) {
+    return Column(
+      children: [
+        Divider(
+          color: MyColor.divider,
+          height: 24,
+        ),
+        actions,
+      ],
     );
   }
 }

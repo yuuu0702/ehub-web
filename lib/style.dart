@@ -15,13 +15,13 @@ abstract class MyStyle {
 
   static final text = _enFont(
     color: MyColor.foreground,
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: FontWeight.bold,
   );
 
   static final subText = _enFont(
     color: MyColor.foreground,
-    fontSize: 11,
+    fontSize: 13,
     fontWeight: FontWeight.bold,
   );
 
@@ -40,13 +40,12 @@ abstract class MyStyle {
 
   static final textJp = _jpFont(
     color: MyColor.foreground,
-    fontSize: 12,
+    fontSize: 14,
   );
 
   static final subTextJp = _jpFont(
     color: MyColor.foregroundSub,
-    fontSize: 10,
-    fontWeight: FontWeight.bold,
+    fontSize: 11,
   );
 
   // コンポーネント系
@@ -61,6 +60,7 @@ abstract class MyStyle {
     color: MyColor.foreground,
     fontSize: 14,
     fontWeight: FontWeight.bold,
+    height: 1.2,
     letterSpacing: 1.1,
   );
 

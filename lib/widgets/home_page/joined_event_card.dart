@@ -1,9 +1,9 @@
-import 'package:ehub_web/color.dart';
 import 'package:ehub_web/style.dart';
+import 'package:ehub_web/widgets/common/my_card.dart';
+import 'package:ehub_web/widgets/common/my_icon_button.dart';
+import 'package:ehub_web/widgets/common/my_text_button.dart';
 import 'package:ehub_web/widgets/home_page/avatars.dart';
 import 'package:ehub_web/widgets/home_page/schedule_date.dart';
-import 'package:ehub_web/widgets/my_card.dart';
-import 'package:ehub_web/widgets/my_text_button.dart';
 import 'package:flutter/material.dart';
 
 class JoinedEventCard extends StatelessWidget {
@@ -14,7 +14,7 @@ class JoinedEventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyCard(
-      child: Column(
+      content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ScheduleDate(),
@@ -25,24 +25,19 @@ class JoinedEventCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           const Avatars(),
-          Divider(
-            color: MyColor.divider,
-            height: 24,
+        ],
+      ),
+      actions: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          MyTextButton(
+            text: '参加を取り消す',
+            onTap: () {},
+            isJp: true,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MyTextButton(
-                text: '参加を取り消す',
-                onTap: () {},
-                isJp: true,
-              ),
-              MyTextButton(
-                text: '詳細',
-                onTap: () {},
-                isJp: true,
-              ),
-            ],
+          MyIconButton(
+            onTap: () {},
+            iconData: Icons.more_horiz_rounded,
           ),
         ],
       ),

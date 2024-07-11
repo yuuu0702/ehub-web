@@ -1,12 +1,12 @@
 import 'package:ehub_web/color.dart';
 import 'package:ehub_web/style.dart';
+import 'package:ehub_web/widgets/common/my_card.dart';
+import 'package:ehub_web/widgets/common/my_filled_button.dart';
+import 'package:ehub_web/widgets/common/my_outlined_button.dart';
+import 'package:ehub_web/widgets/common/my_text_button.dart';
 import 'package:ehub_web/widgets/home_page/avatars.dart';
 import 'package:ehub_web/widgets/home_page/profile.dart';
 import 'package:ehub_web/widgets/home_page/schedule_date.dart';
-import 'package:ehub_web/widgets/my_card.dart';
-import 'package:ehub_web/widgets/my_filled_button.dart';
-import 'package:ehub_web/widgets/my_outlined_button.dart';
-import 'package:ehub_web/widgets/my_text_button.dart';
 import 'package:flutter/material.dart';
 
 class EventCard extends StatelessWidget {
@@ -17,7 +17,7 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyCard(
-      child: Column(
+      content: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
@@ -49,7 +49,7 @@ class EventCard extends StatelessWidget {
             'オーバーウォッチ２交流会を行います。初心者大歓迎です！\nみんなでわいわいやりましょう。奮ってご参加ください。',
             style: MyStyle.textJp,
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           const Row(
             children: [
               Expanded(child: Profile()),
@@ -59,39 +59,44 @@ class EventCard extends StatelessWidget {
               ),
             ],
           ),
-          Divider(
-            color: MyColor.divider,
-            height: 24,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyTextButton(
-                onTap: () {},
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.close,
-                      color: MyColor.foreground,
-                    ),
-                    const SizedBox(width: 4),
-                    Text('拒否', style: MyStyle.buttonJp),
-                  ],
+        ],
+      ),
+      actions: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          MyTextButton(
+            onTap: () {},
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.close,
+                  color: MyColor.foreground,
                 ),
+                const SizedBox(width: 4),
+                Text('拒否', style: MyStyle.buttonJp),
+              ],
+            ),
+          ),
+          const Spacer(),
+          MyOutlinedColor(
+            onTap: () {},
+            text: '興味あり',
+            isJp: true,
+          ),
+          const SizedBox(width: 16),
+          Column(
+            children: [
+              MyFilledButton(
+                onTap: () {},
+                text: '参加する',
+                isJp: true,
               ),
-              const Spacer(),
-              MyOutlinedColor(onTap: () {}, text: '興味あり'),
-              const SizedBox(width: 16),
-              Column(
-                children: [
-                  MyFilledButton(onTap: () {}, text: '参加する'),
-                  Text(
-                    '+50 exp',
-                    style: MyStyle.subText.copyWith(
-                      color: MyColor.level,
-                    ),
-                  ),
-                ],
+              Text(
+                '+50 exp',
+                style: MyStyle.subText.copyWith(
+                  color: MyColor.level,
+                ),
               ),
             ],
           ),

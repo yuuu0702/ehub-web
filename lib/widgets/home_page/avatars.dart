@@ -1,5 +1,5 @@
 import 'package:ehub_web/style.dart';
-import 'package:ehub_web/widgets/home_page/my_avatar.dart';
+import 'package:ehub_web/widgets/common/my_avatar.dart';
 import 'package:flutter/material.dart';
 
 class Avatars extends StatelessWidget {

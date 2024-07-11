@@ -1,5 +1,5 @@
+import 'package:ehub_web/widgets/common/my_title.dart';
 import 'package:ehub_web/widgets/home_page/joined_event_card.dart';
-import 'package:ehub_web/widgets/my_title.dart';
 import 'package:flutter/material.dart';
 
 class JoinedEventArea extends StatelessWidget {

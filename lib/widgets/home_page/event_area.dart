@@ -1,6 +1,6 @@
-import 'package:ehub_web/color.dart';
+import 'package:ehub_web/widgets/common/my_icon_button.dart';
+import 'package:ehub_web/widgets/common/my_title.dart';
 import 'package:ehub_web/widgets/home_page/event_card.dart';
-import 'package:ehub_web/widgets/my_title.dart';
 import 'package:flutter/material.dart';
 
 class EventArea extends StatelessWidget {
@@ -8,7 +8,7 @@ class EventArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: SizedBox(
         width: 482,
         height: double.infinity,
@@ -17,11 +17,14 @@ class EventArea extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                MyTitle(text: 'Events'),
-                Icon(Icons.history, size: 24, color: MyColor.foreground),
+                const MyTitle(text: 'Events'),
+                MyIconButton(
+                  iconData: Icons.history,
+                  onTap: () {},
+                ),
               ],
             ),
-            EventCard(),
+            const EventCard(),
           ],
         ),
       ),

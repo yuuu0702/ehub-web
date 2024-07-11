@@ -11,7 +11,9 @@ class MyButtonBase extends StatelessWidget {
     this.outline = false,
     this.onTap,
     this.width,
-    this.height = 40,
+    this.height,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.isJp = false,
   });
 
   final String? text;
@@ -24,6 +26,8 @@ class MyButtonBase extends StatelessWidget {
   final void Function()? onTap;
   final double? width;
   final double? height;
+  final EdgeInsets padding;
+  final bool isJp;
 
   Color get effectColor => foregroundColor.withOpacity(0.12);
 
@@ -31,7 +35,7 @@ class MyButtonBase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       width: width,
-      height: height,
+      height: height ?? 36,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: backgroundColor,
@@ -45,11 +49,13 @@ class MyButtonBase extends StatelessWidget {
         onTap: onTap,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: padding,
             child: text != null
                 ? Text(
                     text!,
-                    style: MyStyle.button.copyWith(color: foregroundColor),
+                    style: isJp
+                        ? MyStyle.buttonJp.copyWith(color: foregroundColor)
+                        : MyStyle.button.copyWith(color: foregroundColor),
                   )
                 : child,
           ),
