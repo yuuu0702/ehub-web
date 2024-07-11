@@ -1,3 +1,4 @@
+import 'package:ehub_web/page/create_profile_page.dart';
 import 'package:ehub_web/page/first_page.dart';
 import 'package:ehub_web/page/home_page.dart';
 import 'package:ehub_web/page/login_page.dart';
@@ -40,6 +41,16 @@ final goRouter = GoRouter(
         );
       },
     ),
+    GoRoute(
+      path: '/create-profile',
+      name: 'create-profile',
+      pageBuilder: (context, state) {
+        return MaterialPage(
+          key: state.pageKey,
+          child: const CreateProfilePage(),
+        );
+      },
+    ),
     // ex) アカウント画面
     GoRoute(
       path: '/home',
@@ -47,7 +58,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: const HomePage(),
+          child: HomePage(state.extra as String),
         );
       },
     ),

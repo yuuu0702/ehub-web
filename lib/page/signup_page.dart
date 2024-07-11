@@ -1,13 +1,16 @@
+import 'package:ehub_web/provider/userdata_provider.dart';
 import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends ConsumerWidget {
   const SignUpPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var email = '';
     var password = '';
 
@@ -49,6 +52,10 @@ class SignUpPage extends StatelessWidget {
                     email: email,
                     password: password,
                   );
+
+                  ref.read(UserData.uid.notifier).state = result.user!.uid;
+
+                  context.go('/create_profile');
 
                   print('アカウント作成に成功しました：${result.toString()}');
                 } catch (e) {

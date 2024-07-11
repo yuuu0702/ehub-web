@@ -2,6 +2,7 @@ import 'package:ehub_web/widgets/my_filled_button.dart';
 import 'package:ehub_web/widgets/my_text_form_field.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -47,6 +48,11 @@ class LoginPage extends StatelessWidget {
                   final result = await auth.signInWithEmailAndPassword(
                     email: email,
                     password: password,
+                  );
+
+                  context.go(
+                    '/create-profile',
+                    extra: result.user!.uid,
                   );
 
                   print('ログインに成功しました：${result.toString()}');
