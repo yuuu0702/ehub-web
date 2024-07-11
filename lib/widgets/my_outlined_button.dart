@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 class MyOutlinedColor extends StatelessWidget {
   const MyOutlinedColor({
     super.key,
-    required this.text,
+    this.text,
+    this.child,
     this.onTap,
     this.isJp = false,
     this.width,
   });
 
-  final String text;
+  final String? text;
+  final Widget? child;
   final void Function()? onTap;
   final bool isJp;
   final double? width;
@@ -19,12 +21,13 @@ class MyOutlinedColor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyButtonBase(
-      text: text,
       onTap: onTap,
       width: width,
       foregroundColor: MyColor.foreground,
       backgroundColor: Colors.transparent,
       outline: true,
+      text: text,
+      child: child,
     );
   }
 }

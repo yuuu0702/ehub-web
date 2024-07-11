@@ -6,7 +6,7 @@ import 'package:ehub_web/widgets/home_page/joined_event_area.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage(this.uid, {super.key});
+  const HomePage(this.uid, {super.key});
 
   final String uid;
 
@@ -17,16 +17,21 @@ class HomePage extends StatelessWidget {
         body: SizedBox(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: const Column(
+          child: Column(
             children: [
               Header(uid: uid),
-              Expanded(
+              const Expanded(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Row(
                     children: [
                       JoinedEventArea(),
-                      Expanded(child: EventArea()),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24),
+                          child: EventArea(),
+                        ),
+                      ),
                       RecentUserArea(),
                     ],
                   ),

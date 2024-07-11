@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class MyButtonBase extends StatelessWidget {
   const MyButtonBase({
     super.key,
-    required this.text,
+    this.text,
+    this.child,
     required this.foregroundColor,
     required this.backgroundColor,
     this.outline = false,
@@ -13,7 +14,10 @@ class MyButtonBase extends StatelessWidget {
     this.height = 40,
   });
 
-  final String text;
+  final String? text;
+
+  /// textがある場合はテキスト優先
+  final Widget? child;
   final Color foregroundColor;
   final Color backgroundColor;
   final bool outline;
@@ -41,11 +45,13 @@ class MyButtonBase extends StatelessWidget {
         onTap: onTap,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              text,
-              style: MyStyle.button.copyWith(color: foregroundColor),
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: text != null
+                ? Text(
+                    text!,
+                    style: MyStyle.button.copyWith(color: foregroundColor),
+                  )
+                : child,
           ),
         ),
       ),

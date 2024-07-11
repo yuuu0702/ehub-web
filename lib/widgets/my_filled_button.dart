@@ -5,13 +5,15 @@ import 'package:flutter/material.dart';
 class MyFilledButton extends StatelessWidget {
   const MyFilledButton({
     super.key,
-    required this.text,
+    this.text,
+    this.child,
     this.onTap,
     this.isJp = false,
     this.width,
   });
 
-  final String text;
+  final String? text;
+  final Widget? child;
   final void Function()? onTap;
   final bool isJp;
   final double? width;
@@ -19,11 +21,12 @@ class MyFilledButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyButtonBase(
-      text: text,
       onTap: onTap,
       width: width,
       foregroundColor: MyColor.background,
       backgroundColor: MyColor.foreground,
+      text: text,
+      child: child,
     );
   }
 }

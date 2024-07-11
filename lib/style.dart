@@ -41,7 +41,6 @@ abstract class MyStyle {
   static final textJp = _jpFont(
     color: MyColor.foreground,
     fontSize: 12,
-    fontWeight: FontWeight.bold,
   );
 
   static final subTextJp = _jpFont(

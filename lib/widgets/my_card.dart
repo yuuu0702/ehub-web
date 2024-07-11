@@ -2,7 +2,10 @@ import 'package:ehub_web/color.dart';
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
-  const MyCard({super.key, required this.child});
+  const MyCard({
+    super.key,
+    required this.child,
+  });
 
   final Widget child;
 
