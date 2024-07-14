@@ -2,8 +2,8 @@ import 'dart:typed_data';
 
 import 'package:ehub_web/provider/userdata_provider.dart';
 import 'package:ehub_web/style.dart';
-import 'package:ehub_web/widgets/my_filled_button.dart';
-import 'package:ehub_web/widgets/my_text_form_field.dart';
+import 'package:ehub_web/widgets/common/my_filled_button.dart';
+import 'package:ehub_web/widgets/common/my_text_form_field.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
