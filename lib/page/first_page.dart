@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ehub_web/widgets/my_filled_button.dart';
-import 'package:ehub_web/widgets/my_text_button.dart';
+import 'package:ehub_web/widgets/common/my_filled_button.dart';
+import 'package:ehub_web/widgets/common/my_text_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -51,6 +51,7 @@ class FirstPage extends StatelessWidget {
                 MyFilledButton(
                   text: 'Login',
                   width: 160,
+                  height: 40,
                   onTap: () {
                     context.push('/login');
                   },
@@ -59,6 +60,7 @@ class FirstPage extends StatelessWidget {
                 MyTextButton(
                   text: 'SingUp',
                   width: 160,
+                  height: 40,
                   onTap: () {
                     context.push('/signup');
                   },

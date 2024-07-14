@@ -4,22 +4,30 @@ import 'package:flutter/material.dart';
 class MyButtonBase extends StatelessWidget {
   const MyButtonBase({
     super.key,
-    required this.text,
+    this.text,
+    this.child,
     required this.foregroundColor,
     required this.backgroundColor,
     this.outline = false,
     this.onTap,
     this.width,
-    this.height = 40,
+    this.height,
+    this.padding = const EdgeInsets.symmetric(horizontal: 16),
+    this.isJp = false,
   });
 
-  final String text;
+  final String? text;
+
+  /// textがある場合はテキスト優先
+  final Widget? child;
   final Color foregroundColor;
   final Color backgroundColor;
   final bool outline;
   final void Function()? onTap;
   final double? width;
   final double? height;
+  final EdgeInsets padding;
+  final bool isJp;
 
   Color get effectColor => foregroundColor.withOpacity(0.12);
 
@@ -27,7 +35,7 @@ class MyButtonBase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Ink(
       width: width,
-      height: height,
+      height: height ?? 36,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
         color: backgroundColor,
@@ -41,11 +49,15 @@ class MyButtonBase extends StatelessWidget {
         onTap: onTap,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              text,
-              style: MyStyle.button.copyWith(color: foregroundColor),
-            ),
+            padding: padding,
+            child: text != null
+                ? Text(
+                    text!,
+                    style: isJp
+                        ? MyStyle.buttonJp.copyWith(color: foregroundColor)
+                        : MyStyle.button.copyWith(color: foregroundColor),
+                  )
+                : child,
           ),
         ),
       ),

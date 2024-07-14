@@ -1,30 +1,26 @@
 import 'package:ehub_web/color.dart';
-import 'package:ehub_web/widgets/my_button_base.dart';
+import 'package:ehub_web/widgets/common/my_button_base.dart';
 import 'package:flutter/material.dart';
 
-class MyOutlinedColor extends StatelessWidget {
-  const MyOutlinedColor({
+class MyIconButton extends StatelessWidget {
+  const MyIconButton({
     super.key,
-    required this.text,
+    required this.iconData,
     this.onTap,
-    this.isJp = false,
-    this.width,
   });
 
-  final String text;
+  final IconData iconData;
   final void Function()? onTap;
-  final bool isJp;
-  final double? width;
 
   @override
   Widget build(BuildContext context) {
     return MyButtonBase(
-      text: text,
       onTap: onTap,
-      width: width,
       foregroundColor: MyColor.foreground,
       backgroundColor: Colors.transparent,
-      outline: true,
+      isJp: false,
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      child: Icon(iconData, color: MyColor.foreground),
     );
   }
 }
