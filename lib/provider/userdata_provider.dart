@@ -1,22 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class UserData {
   static final uid = StateProvider((ref) => '');
 
+  // ログイン中のユーザー情報を取得
+  static final currentUserData = StateProvider((ref) {
+    return FirebaseAuth.instance.currentUser;
+  });
+
   // ユーザー情報をFirestoreから取得
-  static void getProfile(uid) {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
+  static Future<Map<String, dynamic>?> getProfile(String uid) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (documentSnapshot.exists) {
-        print('Document data: ${documentSnapshot.data()}');
+        return documentSnapshot.data() as Map<String, dynamic>?;
       } else {
-        print('Document does not exist on the database');
+        // ユーザーデータが取得できなかった場合ログイン画面に戻る
+        print('ユーザーデータが取得できませんでした');
       }
-    });
+    } catch (e) {
+      print('Error fetching user profile: $e');
+    }
+    return null;
   }
 
   // ユーザー情報をFirestoreに保存
