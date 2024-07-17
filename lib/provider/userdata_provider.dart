@@ -28,4 +28,9 @@ class UserData {
         .then((value) => print('User Profile Added'))
         .catchError((error) => print('Failed to add user profile: $error'));
   }
+
+  // サインアウト
+  static void signOut() {
+    FirebaseAuth.instance.signOut();
+  }
 }
