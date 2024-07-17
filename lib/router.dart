@@ -58,7 +58,7 @@ final goRouter = GoRouter(
       pageBuilder: (context, state) {
         return MaterialPage(
           key: state.pageKey,
-          child: HomePage(state.extra as String),
+          child: const HomePage(),
         );
       },
     ),
