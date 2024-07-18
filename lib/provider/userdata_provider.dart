@@ -5,12 +5,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class UserData {
   static final uid = StateProvider((ref) => '');
 
-  // ログイン中のユーザー情報を取得
+  /// ログイン中のユーザー情報を取得
   static final currentUserData = StateProvider((ref) {
     return FirebaseAuth.instance.currentUser;
   });
 
-  // ユーザー情報をFirestoreから取得
+  /// ユーザー情報をFirestoreから取得
   static Future<Map<String, dynamic>?> getProfile(String uid) async {
     try {
       DocumentSnapshot documentSnapshot =
@@ -27,7 +27,7 @@ class UserData {
     return null;
   }
 
-  // ユーザー情報をFirestoreに保存
+  /// ユーザー情報をFirestoreに保存
   static void setProfile(uid, data) {
     FirebaseFirestore.instance
         .collection('users')
@@ -37,7 +37,35 @@ class UserData {
         .catchError((error) => print('Failed to add user profile: $error'));
   }
 
-  // サインアウト
+  /// プロフィールが設定されているかの確認
+  static Future<bool> isProfileSet() async {
+    final uid = FirebaseAuth.instance.currentUser?.uid;
+    if (uid == null) return false;
+    try {
+      final doc =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      return doc.exists;
+    } catch (e) {
+      print('Error fetching user profile: $e');
+      return false;
+    }
+  }
+
+  /// サインイン
+  static signIn(email, password) async {
+    try {
+      final FirebaseAuth auth = FirebaseAuth.instance;
+      await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      return auth.currentUser?.uid;
+    } catch (e) {
+      print('ログインに失敗しました：${e.toString()}');
+    }
+  }
+
+  /// サインアウト
   static void signOut() {
     FirebaseAuth.instance.signOut();
   }
