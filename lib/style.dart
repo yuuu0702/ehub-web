@@ -77,4 +77,10 @@ abstract class MyStyle {
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
+
+  static final level = _enFont(
+    color: MyColor.level,
+    fontSize: 13,
+    fontWeight: FontWeight.bold,
+  );
 }
