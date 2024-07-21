@@ -38,7 +38,7 @@ class UserData {
   }
 
   /// プロフィールが設定されているかの確認
-  static Future<bool> isProfileSet() async {
+  static Future<bool> isProfileSet(String uid) async {
     final uid = FirebaseAuth.instance.currentUser?.uid;
     if (uid == null) return false;
     try {
@@ -48,20 +48,6 @@ class UserData {
     } catch (e) {
       print('Error fetching user profile: $e');
       return false;
-    }
-  }
-
-  /// サインイン
-  static signIn(email, password) async {
-    try {
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      await auth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
-      return auth.currentUser?.uid;
-    } catch (e) {
-      print('ログインに失敗しました：${e.toString()}');
     }
   }
 

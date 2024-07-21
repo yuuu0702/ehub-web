@@ -1,6 +1,7 @@
 import 'package:ehub_web/provider/userdata_provider.dart';
 import 'package:ehub_web/widgets/common/my_filled_button.dart';
 import 'package:ehub_web/widgets/common/my_text_form_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -46,12 +47,17 @@ class LoginPage extends StatelessWidget {
               onTap: () async {
                 try {
                   // メール・パスワードでログインしUIDを取得
-                  UserData.signIn(email, password);
+                  final credential =
+                      await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: email,
+                    password: password,
+                  );
 
                   // ユーザープロフィールが設定されていたらホームページへ遷移
-                  final route = await UserData.isProfileSet()
-                      ? '/home'
-                      : '/create-profile';
+                  final route =
+                      await UserData.isProfileSet(credential.user!.uid)
+                          ? '/home'
+                          : '/create-profile';
                   if (context.mounted) context.go(route);
                 } catch (e) {
                   print('ログインに失敗しました：${e.toString()}');
