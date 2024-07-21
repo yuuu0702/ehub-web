@@ -41,26 +41,23 @@ class ProfileState extends ConsumerState<Profile> {
   Widget build(BuildContext context) {
     return Skeletonizer(
       enabled: _loading,
-      child: Expanded(
-        child: Row(
-          children: [
-            const MyAvatar(
-              imageUrl:
-                  'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg',
-            ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(userDataProfile?['name'] ?? '', style: MyStyle.captionJp),
-                Text(
-                  userDataProfile?['department'] ?? '',
-                  style: MyStyle.subTextJp,
-                ),
-              ],
-            ),
-          ],
-        ),
+      child: Row(
+        children: [
+          MyAvatar(
+            imageUrl: userDataProfile?['photo_url'] ?? '',
+          ),
+          const SizedBox(width: 8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(userDataProfile?['name'] ?? '', style: MyStyle.captionJp),
+              Text(
+                userDataProfile?['department'] ?? '',
+                style: MyStyle.subTextJp,
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
