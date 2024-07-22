@@ -78,6 +78,11 @@ abstract class MyStyle {
     fontWeight: FontWeight.bold,
   );
 
+  static final input = _jpFont(
+    color: MyColor.foreground,
+    fontSize: 16,
+  );
+
   static final level = _enFont(
     color: MyColor.level,
     fontSize: 13,

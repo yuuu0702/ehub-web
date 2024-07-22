@@ -1,3 +1,5 @@
+import 'package:ehub_web/widgets/common/my_filled_button.dart';
+import 'package:ehub_web/widgets/home_page/create_event_dialog.dart';
 import 'package:ehub_web/widgets/home_page/header_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +31,19 @@ class Header extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(width: 32),
+            MyFilledButton(
+              text: 'イベント作成',
+              isJp: true,
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (dialogContext) {
+                    return const CreateEventDialog();
+                  },
+                );
+              },
             ),
             const Spacer(),
             // プロフィールエリア

@@ -1,30 +1,39 @@
+import 'package:ehub_web/color.dart';
 import 'package:ehub_web/style.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatelessWidget {
-  const MyTextFormField(
-      {super.key, this.labelText, required this.onChanged, this.maxLines = 1});
+  const MyTextFormField({
+    super.key,
+    this.labelText,
+    required this.onChanged,
+    this.maxLines = 1,
+  });
 
   final String? labelText;
   final int maxLines;
-  final Function(String) onChanged;
+  final void Function(String) onChanged;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        labelText != null ? Text(labelText!, style: MyStyle.text) : Container(),
+        Text(labelText ?? '', style: MyStyle.captionJp),
         // 何も表示しない
         const SizedBox(height: 4),
         TextFormField(
           maxLines: maxLines,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(
+          cursorColor: MyColor.foreground,
+          cursorWidth: 3,
+          style: MyStyle.input,
+          decoration: const InputDecoration(
+            isDense: true,
+            border: OutlineInputBorder(
               borderSide: BorderSide.none,
-              borderRadius: BorderRadius.all(Radius.circular(8)),
+              borderRadius: BorderRadius.all(Radius.circular(4)),
             ),
-            fillColor: const Color(0xFF2C3740),
+            fillColor: MyColor.input,
             filled: true,
           ),
           onChanged: onChanged,
