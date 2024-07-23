@@ -19,9 +19,12 @@ class MyTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(labelText ?? '', style: MyStyle.captionJp),
-        // 何も表示しない
-        const SizedBox(height: 4),
+        labelText != null
+            ? Padding(
+                padding: const EdgeInsets.only(bottom: 4),
+                child: Text(labelText!, style: MyStyle.captionJp),
+              )
+            : const SizedBox(),
         TextFormField(
           maxLines: maxLines,
           cursorColor: MyColor.foreground,

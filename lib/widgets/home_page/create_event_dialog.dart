@@ -1,7 +1,7 @@
-import 'package:ehub_web/color.dart';
-import 'package:ehub_web/style.dart';
-import 'package:ehub_web/widgets/common/my_date_input_field.dart';
+import 'package:ehub_web/widgets/common/my_date_selector.dart';
+import 'package:ehub_web/widgets/common/my_dialog.dart';
 import 'package:ehub_web/widgets/common/my_text_form_field.dart';
+import 'package:ehub_web/widgets/common/my_time_selector.dart';
 import 'package:flutter/material.dart';
 
 class CreateEventDialog extends StatelessWidget {
@@ -11,16 +11,22 @@ class CreateEventDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDialog(
-      title: const Text('イベント作成'),
-      titleTextStyle: MyStyle.titleJp,
-      backgroundColor: MyColor.background,
-      contentPadding: const EdgeInsets.all(24),
+    return MyDialog(
+      title: 'イベント作成',
       children: [
         const SizedBox(width: 640),
-        MyDateInputField(
-          labelText: '日付',
-          onChanged: (value) {},
+        Row(
+          children: [
+            MyDateSelector(
+              labelText: '日付',
+              onChanged: (value) {},
+            ),
+            const SizedBox(width: 24),
+            MyTimeSelector(
+              labelText: '時間',
+              onChanged: (value) {},
+            ),
+          ],
         ),
         const SizedBox(height: 16),
         MyTextFormField(
