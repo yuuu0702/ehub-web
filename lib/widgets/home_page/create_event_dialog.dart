@@ -2,7 +2,16 @@ import 'package:ehub_web/widgets/common/my_date_selector.dart';
 import 'package:ehub_web/widgets/common/my_dialog.dart';
 import 'package:ehub_web/widgets/common/my_text_form_field.dart';
 import 'package:ehub_web/widgets/common/my_time_selector.dart';
+import 'package:ehub_web/widgets/common/platform_selector.dart';
+import 'package:ehub_web/widgets/home_page/my_dropdown_menu.dart';
 import 'package:flutter/material.dart';
+
+final List<String> _gameSamples = [
+  'League of Legends',
+  'Overwatch 2',
+  'Street Fighter 6',
+  'VALORANT',
+];
 
 class CreateEventDialog extends StatelessWidget {
   const CreateEventDialog({
@@ -40,9 +49,16 @@ class CreateEventDialog extends StatelessWidget {
           maxLines: 3,
         ),
         const SizedBox(height: 16),
-        MyTextFormField(
-          labelText: 'ゲーム',
-          onChanged: (value) {},
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            MyDropdownMenu(
+              labelText: 'ゲーム',
+              width: 300,
+              menuEntries: _gameSamples,
+            ),
+            const SizedBox(width: 24),
+          ],
         ),
         const SizedBox(height: 16),
       ],

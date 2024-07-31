@@ -1,5 +1,5 @@
-import 'package:ehub_web/page/profile_with_mini_level.dart';
 import 'package:ehub_web/widgets/common/my_title.dart';
+import 'package:ehub_web/widgets/home_page/profile_with_mini_level.dart';
 import 'package:flutter/material.dart';
 
 class RecentUserArea extends StatelessWidget {
