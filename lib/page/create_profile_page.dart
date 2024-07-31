@@ -4,7 +4,6 @@ import 'package:ehub_web/provider/userdata_provider.dart';
 import 'package:ehub_web/style.dart';
 import 'package:ehub_web/widgets/common/my_filled_button.dart';
 import 'package:ehub_web/widgets/common/my_text_form_field.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,25 +28,6 @@ class _CreateProfilePageState extends ConsumerState<CreateProfilePage> {
   var userName = '';
   var department = '';
   var introduction = '';
-
-  Future<void> uploadImageToFirebaseStorage(
-      Uint8List imageData, String uid) async {
-    try {
-      // Create a unique file name for the upload
-      String fileName = DateTime.now().millisecondsSinceEpoch.toString();
-
-      // Create a reference to the file location
-      Reference ref =
-          FirebaseStorage.instance.ref().child('users/$uid/photos/$fileName');
-
-      // Upload the file to Firebase Storage
-      await ref.putData(imageData);
-
-      print('Image uploaded successfully');
-    } catch (e) {
-      print('Failed to upload image: $e');
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -210,16 +190,19 @@ class _CreateProfilePageState extends ConsumerState<CreateProfilePage> {
                 ),
                 const SizedBox(height: 24),
                 MyFilledButton(
-                  text: 'Login',
+                  text: 'Create',
                   width: 160,
-                  onTap: () {
-                    final uid = ref.read(UserData.uid);
+                  onTap: () async {
+                    //TODO: リファクタする
+                    final uid = ref.read(UserData.currentUserData)?.uid;
 
                     // 画像をFirebase Storageに保存
-                    uploadImageToFirebaseStorage(_userImage!, uid);
+                    final photoData =
+                        await UserData.uploadImageToFirebaseStorage(
+                            _userImage!, uid!);
 
-                    // ユーザー情報をFirestoreに保存
-                    UserData.setProfile(uid, {
+                    // プロフィール情報をFirestoreに保存
+                    await UserData.setProfile(uid, {
                       'name': userName,
                       'department': department,
                       'introduction': introduction,
@@ -227,9 +210,9 @@ class _CreateProfilePageState extends ConsumerState<CreateProfilePage> {
                       'platform_playstation': platformPlayStation,
                       'platform_switch': platformSwitch,
                       'platform_mobile': platformMobile,
+                      'photo_url': photoData['photoURL'],
+                      'photo_path': photoData['path'],
                     });
-
-                    // homeに遷移
                     context.go('/home');
                   },
                 ),
