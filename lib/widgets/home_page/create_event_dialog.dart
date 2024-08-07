@@ -58,6 +58,15 @@ class CreateEventDialog extends StatelessWidget {
               menuEntries: _gameSamples,
             ),
             const SizedBox(width: 24),
+            Expanded(
+              child: GamePlatformSelector(
+                labelText: 'プラットフォーム',
+                size: 48,
+                onChanged: (selected) {
+                  print(selected);
+                },
+              ),
+            ),
           ],
         ),
         const SizedBox(height: 16),

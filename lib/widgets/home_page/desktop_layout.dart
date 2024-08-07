@@ -5,15 +5,13 @@ import 'package:ehub_web/widgets/home_page/recent_user_area.dart';
 import 'package:flutter/material.dart';
 
 class DesktopLayout extends StatelessWidget {
-  const DesktopLayout({super.key, required this.uid});
-
-  final String uid;
+  const DesktopLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header(uid: uid),
+        Header(),
         const Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),

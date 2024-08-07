@@ -4,15 +4,13 @@ import 'package:ehub_web/widgets/home_page/joined_event_area.dart';
 import 'package:flutter/material.dart';
 
 class TabletLayout extends StatelessWidget {
-  const TabletLayout({super.key, required this.uid});
-
-  final String uid;
+  const TabletLayout({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Header(uid: uid),
+        Header(),
         const Expanded(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 24),

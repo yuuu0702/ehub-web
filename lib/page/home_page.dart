@@ -18,11 +18,11 @@ class HomePage extends StatelessWidget {
 
   Widget _layout(double width) {
     if (width > 1280) {
-      return DesktopLayout(uid: uid);
+      return DesktopLayout();
     } else if (width > 780) {
-      return TabletLayout(uid: uid);
+      return TabletLayout();
     } else {
-      return MobileLayout(uid: uid);
+      return MobileLayout();
     }
   }
 }
